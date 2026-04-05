@@ -59,9 +59,8 @@ def cached_teams():
     return load_teams()
 
 
-@st.cache_data(ttl=900)
+@st.cache_data(ttl=60)
 def cached_daily(team_id: int, target_date: str):
-    return build_schedule_df(team_id=team_id, target_date=target_date)
 
 
 @st.cache_data(ttl=1800)

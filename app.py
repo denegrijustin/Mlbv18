@@ -61,7 +61,12 @@ def cached_teams():
 
 @st.cache_data(ttl=60)
 def cached_daily(team_id: int, target_date: str):
-
+with live_tab:
+    st.subheader('Live Feed')
+    st.caption(
+        f'Tracking game {live_game_pk}' if live_game_pk
+        else f'No live game — statuses: {", ".join(daily_df["status"].unique()) if not daily_df.empty else "no games loaded"}'
+    )
 
 @st.cache_data(ttl=1800)
 def cached_season(team_id: int, season: int, end_date: str):
